@@ -1,0 +1,13 @@
+<div xmlns:th="http://www.thymeleaf.org">
+	<div class="panel panel-primary">
+		<div class="card bg-primary">
+			<div class="card-body text-center">
+				<h5 class="card-title text-white" href="#collapseExample" data-bs-toggle="collapse">Danh mục</h5>
+			</div>
+		</div>
+		<div class="list-group text-center" id="collapseExample">
+			<br> <a th:each="c:${cates}" th:href="@{|/product/list?cid=${c.id}|}"
+				class="list-group-item">[[${c.name}]]</a>
+		</div>
+	</div>
+</div>

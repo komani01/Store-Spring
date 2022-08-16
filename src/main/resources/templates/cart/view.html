@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+	<main>
+		<div class="card" th:fragment="shopping_cart">
+			<div class="card-header bg-primary">
+				SHOPPING CART
+			</div>
+			<div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Price</th>
+							<th>Quantiy</th>
+							<th>Amount</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in cart.items">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.price | number : 2}}</td>
+							<td>
+								<input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number"
+									min="1" />
+							</td>
+							<td>${{item.qty * item.price | number : 2}}</td>
+							<td>
+								<button ng-click="cart.remove(item.id)" class="btn btn-sm btn-danger"><i
+										class="glyphicon glyphicon-trash"></i></button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<button ng-click="cart.clear()" class="btn btn-danger"><i
+						class="glyphicon glyphicon-trash"></i>Clear</button>
+				<a th:href="@{/order/checkout}" class="btn btn-primary"><i
+						class="glyphicon glyphicon-hand-right"></i>Check Out</a>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
